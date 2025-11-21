@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	db "github.com/geoffreyhinton/bank_transfer/db/sqlc"
+	"github.com/geoffreyhinton/bank_transfer/token"
 	"github.com/geoffreyhinton/bank_transfer/util"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
@@ -14,13 +15,13 @@ import (
 type Server struct {
 	config     util.Config
 	store      db.Store
-	tokenMaker *util.TokenMaker
+	tokenMaker *token.Maker
 	router     *gin.Engine
 }
 
 // NewServer creates a new HTTP server and set up routing.
 func NewServer(config util.Config, store db.Store) (*Server, error) {
-	tokenMaker, err := util.NewTokenMaker(config.TokenSymmetricKey)
+	tokenMaker, err := token.NewPasetoMaker(config.TokenSymmetricKey)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create token maker: %w", err)
 	}
