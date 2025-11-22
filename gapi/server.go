@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	db "github.com/geoffreyhinton/bank_transfer/db/sqlc"
+	pb "github.com/geoffreyhinton/bank_transfer/pb"
 	"github.com/geoffreyhinton/bank_transfer/token"
 	"github.com/geoffreyhinton/bank_transfer/util"
 )

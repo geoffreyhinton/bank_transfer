@@ -4,6 +4,7 @@ import (
 	"context"
 
 	db "github.com/geoffreyhinton/bank_transfer/db/sqlc"
+	pb "github.com/geoffreyhinton/bank_transfer/pb"
 	"github.com/geoffreyhinton/bank_transfer/util"
 	"github.com/lib/pq"
 	"google.golang.org/grpc/codes"
