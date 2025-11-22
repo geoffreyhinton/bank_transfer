@@ -9,9 +9,11 @@ import (
 
 	"github.com/geoffreyhinton/bank_transfer/api"
 	db "github.com/geoffreyhinton/bank_transfer/db/sqlc"
+	_ "github.com/geoffreyhinton/bank_transfer/doc/statik"
 	"github.com/geoffreyhinton/bank_transfer/gapi"
 	"github.com/geoffreyhinton/bank_transfer/pb"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/rakyll/statik/fs"
 
 	"github.com/geoffreyhinton/bank_transfer/util"
 	"google.golang.org/grpc"
@@ -85,6 +87,13 @@ func runGatewayServer(config util.Config, store db.Store) {
 	mux := http.NewServeMux()
 	mux.Handle("/", grpcMux)
 
+	statikFS, err := fs.New()
+	if err != nil {
+		log.Fatal("cannot create statik fs:", err)
+	}
+
+	swaggerHandler := http.StripPrefix("/swagger/", http.FileServer(statikFS))
+	mux.Handle("/swagger/", swaggerHandler)
 	listener, err := net.Listen("tcp", config.HTTPServerAddress)
 	if err != nil {
 		log.Fatal("cannot create listener:", err)
