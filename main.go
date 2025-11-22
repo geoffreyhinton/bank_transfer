@@ -8,6 +8,7 @@ import (
 	"github.com/geoffreyhinton/bank_transfer/api"
 	db "github.com/geoffreyhinton/bank_transfer/db/sqlc"
 	"github.com/geoffreyhinton/bank_transfer/gapi"
+	"github.com/geoffreyhinton/bank_transfer/pb"
 	"github.com/geoffreyhinton/bank_transfer/util"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
