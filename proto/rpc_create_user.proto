@@ -1,6 +1,7 @@
-syntax = "proto3"
+syntax = "proto3";
 
 package pb;
+
 import "user.proto";
 
 option go_package ="github.com/geoffreyhinton/bank_transfer/pb";
@@ -13,5 +14,5 @@ message CreateUserRequest {
 }
 
 message CreateUserResponse {
-    User user = 1
+    User user = 1;
 }
